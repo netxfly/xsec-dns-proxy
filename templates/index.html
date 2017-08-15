@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dns logs</title>
+    <link rel="stylesheet" href="/css/css.css">
+</head>
+<body>
+<h2>dns logs</h2>
+<table class="bordered" align="left">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Domain Name</th>
+        <th>Client IP</th>
+        <th>dns_record</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    {{range .info }}
+    <tr>
+        <td>{{ .Id}}</td>
+        <td>{{ .DomainName }}</td>
+        <td>{{ .ClientIp }}</td>
+        <td>
+            {{ range $k, $v := .DnsRecord }}
+            <pre> {{ $v }}</pre>
+            {{ end }}
+        </td>
+        <td>{{ .CreateAt.Format "2006-01-02 15:04:05" }}</td>
+    </tr>
+    {{end}}
+</table>
+</body>
+</html>
